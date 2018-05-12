@@ -1,0 +1,16 @@
+{% extends 'cases/base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+Your account has been created! Please wait three seconds to be redirected or <a href="/login">click here</a>.
+
+<script type="text/javascript">
+	function redirect(){
+       window.location.href = "/login";
+    }
+	setTimeout(redirect, 3000);
+</script>
+
+{% endblock %}

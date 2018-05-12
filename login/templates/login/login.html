@@ -1,0 +1,22 @@
+{% extends 'cases/base.html' %}
+
+{% load static %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static "login/style.css" %}">
+
+<form method="post" id="login-form">
+    {% csrf_token %}
+    {{ form }}
+    <input class="button" type="submit" value="Submit" />
+    {% if account_created %}
+    <b>Account successfully created! Please log in.</b>
+    {% endif %}
+    {% if failed_login %}
+    <b>Login failed! Please check your username and password.</b>
+    {% endif %}
+    <p><a href="create_account/">No account? Create one here!</a></p>
+</form>
+
+{% endblock %}

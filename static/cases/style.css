@@ -1,0 +1,83 @@
+#card-grid{
+	padding-top: 25px;
+	padding-right: 2%;
+	padding-left: 2%;
+	margin: auto;
+}
+
+#search-pages{
+	text-align: center;
+	margin: auto;
+}
+
+#mycases-pages{
+	text-align: center;
+	margin: auto;
+}
+
+#main-name{
+	font-style: italic;
+	font-size: 20px;
+}
+
+#main-header{
+	font-style: italic;
+	text-align: center;
+	padding-top: 40vh;
+	font-size: 42px;
+	color: black;
+}
+
+#main-subheader{
+	text-align: center;
+	font-size: 24px;
+	color: black;
+}
+
+#search-pages-bar{
+	margin: auto;
+}
+
+#mycases-pages-bar{
+	margin: auto;
+
+}
+
+#editor-container{
+	margin: auto;
+	width: 100%;
+}
+
+#title{
+	width: 30%;
+	margin: auto;
+	padding-top: 10px;
+}
+
+#editor{
+	text-align: center;
+	padding-top: 3px;
+}
+
+#save-cancel-buttons{
+	padding-top: 10px;
+	margin: auto;
+	text-align: center;
+}
+
+#account-manage{
+	padding-right: 1%;
+}
+
+div{
+	font-family: 'IBM Plex Sans', sans-serif;
+}
+
+body{
+	font-family: 'IBM Plex Sans', sans-serif;
+}
+
+h4{
+	font-family: 'IBM Plex Sans', sans-serif;
+}
+

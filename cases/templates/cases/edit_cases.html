@@ -1,0 +1,27 @@
+{% extends 'cases/base.html' %}
+
+{% load static %}
+
+{% block content %}
+<div class="grid-x">
+  <div class="cell">
+		<div id="editor-container">
+			<form method="post">
+				{% csrf_token %}
+				<script type="text/javascript" src="{% static "ckeditor/ckeditor-init.js" %}"></script>
+				<script type="text/javascript" src="{% static "ckeditor/ckeditor/ckeditor.js" %}"></script>
+				<div id="title">
+			    	{{ form.title }}
+				</div>
+			    <div id="editor">
+			    	{{ form.text }}
+				</div>
+				<div id="save-cancel-buttons">
+					<button class="button" type="submit" value="Submit">Save</button>
+					<a class="button" href="/mycases/1">Cancel</a>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+{% endblock %}

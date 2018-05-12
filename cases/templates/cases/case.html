@@ -1,0 +1,21 @@
+{% extends 'cases/base.html' %}
+
+
+{% block content %}
+	<div id="individual-case-view">
+	<div id='title'>
+		{{ specific_case.title }}
+	</div>
+	<div id='info'>
+		{{ specific_case.time_posted }}
+		{{ specific_case.author }}
+	</div>
+	<div id='text'>
+		{{ specific_case.text|safe }}
+	</div>
+
+	{% if can_edit %}
+	<a id="case-edit-button" class="button" href="/case/{{ specific_case.id }}/edit">Edit casefile entry</a>
+	{% endif %}
+</div>
+{% endblock %}

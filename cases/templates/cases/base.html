@@ -1,0 +1,154 @@
+{% load static %}
+
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ecasefile</title>
+    <link rel="stylesheet" href="{% static "cases/foundation/css/foundation.css" %}" />
+    <link rel="stylesheet" href="{% static "cases/style.css" %}" />
+    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono:400,400i|IBM+Plex+Sans+Condensed:400,400i|IBM+Plex+Sans:100,100i,400,400i,700,700i|IBM+Plex+Serif:400,400i" rel="stylesheet">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static "cases/ecasefile_logo.png" %}" />
+  </head>
+  <body>
+
+    {% if user.is_authenticated %}
+
+  <nav class="hide-mobile">
+
+    <div class="top-bar" id="menu-panel">
+      <div class="top-bar-left" id="menu-bar-left">
+        <ul class="dropdown menu" data-dropdown-menu>
+          <li class="menu-text" id="main-name"><b>ecasefile</b></li>
+          <li><a href="/">Home</a></li>
+          <li>
+            <a href="/mycases/1">View My Casefiles</a>
+            <ul class="menu vertical">
+              <li><a href="/mycases/1">View My Casefiles</a></li>
+              <li><a href="/mycases/1">Start New Casefile</a></li>
+              <li><a href="/mycases/1">Edit My Casefiles</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/mycases/1">View My Articles</a>
+            <ul class="menu vertical">
+              <li><a href="/mycases/1">View My Articles</a></li>
+              <li><a href="/case/create">Start New Article</a></li>
+              <li><a href="/case/upload">Upload New Article</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div class="top-bar-right" id="menu-bar-right">
+        <ul class="dropdown menu" data-dropdown-menu>
+          <li id="account-manage">
+            <a href="#">My Account</a>
+            <ul class="menu vertical">
+              <li><a href="#">My Account</a></li>
+              <li><a href="#">Search Settings</a></li>
+              <li><a href="/login/logout">Logout</a></li>
+            </ul>
+          </li>
+          <li><input id="search" type="text" onkeydown = "if (event.keyCode == 13) document.getElementById('search-function').click()"></li>
+          <li><button type="button" class="button" onclick="location.href='/search/' + document.getElementById('search').value + '/1'" id="search-function">Search</button></li>
+        </ul>
+      </div>
+    </div>
+    </div>
+
+  </nav>
+
+  <nav class="show-mobile">
+
+    <div class="off-canvas position-left" id="offCanvasLeft" data-off-canvas>
+      <ul class="vertical menu">
+        <li><a href="/">Home</a></li>
+        <li><a href="/mycases/1">View My Casefiles</a></li>
+        <li><a href="/mycases/1">Start New Casefile</a></li>
+        <li><a href="/mycases/1">View My Articles</a></li>
+        <li><a href="/case/create">Start New Article</a></li>
+        <li><a href="/case/upload">Upload New Article</a></li>
+        <li><a href="#">My Account</a></li>
+        <li><a href="#">Change Password</a></li>
+        <li><a href="/login/logout">Logout</a></li>
+      </ul>
+
+  </div>
+
+  <div class="off-canvas-content" data-off-canvas-content>
+    
+    <div class="title-bar">
+      <div class="title-bar-left">
+        <button class="menu-icon" type="button" data-open="offCanvasLeft"></button>
+        <span class="title-bar-title">ecasefile</span>
+      </div>
+    </div>
+  </div>
+
+  </nav>
+
+  {% else %}
+  <nav class="hide-mobile">
+
+    <div class="top-bar" id="menu-panel">
+      <div class="top-bar-left" id="menu-bar-left">
+        <ul class="dropdown menu" data-dropdown-menu>
+          <li class="menu-text" id="main-name">ecasefile</li>
+          <li><a href="/">Home</a></li>
+        </ul>
+      </div>
+      <div class="top-bar-right" id="menu-bar-right">
+        <ul class="menu">
+          <li><a href="/login/">Login</a></li>
+          <li><input id="search" type="text"></li>
+          <li><button type="button" class="button" onclick="location.href='/search/' + document.getElementById('search').value + '/1'" id="search-function">Search</button></li>
+        </ul>
+      </div>
+    </div>
+
+  </nav>
+
+  <nav class="show-mobile">
+
+    <div class="off-canvas position-left" id="offCanvasLeft" data-off-canvas>
+      <ul class="vertical menu">
+        <li><a href="/">Home</a></li>
+        <li><a href="/login/">Login</a></li>
+      </ul>
+    </div>
+
+  <div class="off-canvas-content" data-off-canvas-content>
+    
+    <div class="title-bar">
+      <div class="title-bar-left">
+        <button class="menu-icon" type="button" data-open="offCanvasLeft"></button>
+        <span class="title-bar-title">ecasefile</span>
+      </div>
+    </div>
+
+  </div>
+
+  </nav>
+
+  {% endif %}
+
+  {% block content %}
+
+  {% endblock %}
+
+  <script src="{% static "cases/foundation/js/vendor/jquery.js" %}"></script>
+  <script src="{% static "cases/foundation/js/vendor/what-input.js" %}"></script>
+  <script src="{% static "cases/foundation/js/vendor/foundation.min.js" %}"></script>
+
+  <script>
+    $(document).foundation();
+  </script>
+
+  <nav class="show-mobile">
+    </div>
+  </nav>
+
+  </body>
+</html>

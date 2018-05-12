@@ -1,0 +1,15 @@
+{% extends 'cases/base.html' %}
+
+{% block content %}
+
+<form method="post">
+	{% csrf_token %}
+	{{ form.title }}
+	{{ form.description }}
+	<div id="save-cancel-buttons">
+		<button class="button" type="submit" value="Submit">Save</button>
+		<a class="button" href="/mycases/1">Cancel</a>
+	</div>
+</form>
+
+{% endblock %}

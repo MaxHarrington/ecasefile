@@ -1,0 +1,113 @@
+{% extends 'cases/base.html' %}
+
+{% block content %}
+
+{% if latest_cases %}
+
+<nav class="hide-mobile">
+	<div id="mycases-pages">
+		{% for cases in latest_cases %}
+			<div class="callout secondary" id="callout-standard">
+			  <h5>{{ cases.title }}</h5>
+			  <p><i>by {{ cases.author }}, published on {{ cases.time_posted }}</i></p>
+			  <a href="/case/{{cases.id}}">Case description/tag placeholder</a>
+			</div>
+		{% endfor %}
+	</div>
+
+	<div class="columns" id="pages">
+			<nav aria-label="Pagination">
+				<ul class="pagination" role="navigation" aria-label="Pagination" id="mycases-pages-bar">
+					{% if total_pages == 1 %}
+								<li class="disabled" aria-label="Previous page">Previous<span class="show-for-sr">page</span></li>
+							    <li class="current"><span class="show-for-sr">You're on page</span>{{ current_page }}</li>
+						    	<li class="disabled" aria-label="Next page">Next <span class="show-for-sr">page</span></a></li>
+					    	</ul>
+				    	</nav>
+				    {% else %}
+				    	{% if current_page == 1 %}
+								<li class="disabled" aria-label="Previous page">Previous<span class="show-for-sr">page</span></a></li>
+							    <li class="current"><span class="show-for-sr">You're on page</span>{{ current_page }}</li>
+							    <li><a href="/mycases/{{ next_page }}" aria-label="Page {{ next_page }}">{{ next_page }}</a></li>
+						    	<li class="pagination-next" aria-label="Next page"><a href="/mycases/{{ next_page }}">Next <span class="show-for-sr">page</span></a></li>
+					    	</ul>
+				    	</nav>
+				    	{% endif %}
+					    {% if current_page != 1 and current_page < total_pages %}
+								<li class="pagination-previous" aria-label="Previous page"><a href="/mycases/{{ previous_page }}">Previous<span class="show-for-sr">page</span></a></li>
+								<li><a href="/mycases/{{ previous_page }}" aria-label="Page {{ previous_page }}">{{ previous_page }}</a></li>
+							    <li class="current"><span class="show-for-sr">You're on page</span>{{ current_page }}</li>
+							    <li><a href="/mycases/{{ next_page }}" aria-label="Page {{ next_page }}">{{ next_page }}</a></li>
+						    	<li class="pagination-next" aria-label="Next page"><a href="/mycases/{{ next_page }}">Next <span class="show-for-sr">page</span></a></li>
+					    	</ul>
+				    	</nav>
+		    			{% endif %}
+					    {% if current_page == total_pages %}
+								<li class="pagination-previous" aria-label="Previous page"><a href="/mycases/{{ previous_page }}">Previous<span class="show-for-sr">page</span></a></li>
+								<li><a href="/mycases/{{ previous_page }}" aria-label="Page {{ previous_page }}">{{ previous_page }}</a></li>
+							    <li class="current"><span class="show-for-sr">You're on page</span>{{ current_page }}</li>
+						    	<li class="disabled" aria-label="Next page">Next <span class="show-for-sr">page</span></a></li>
+					    	</ul>
+				    	</nav>
+		    			{% endif %}
+				    {% endif %}
+		</div>
+</nav>
+
+<nav class="show-mobile">
+	<div id="mycases-pages">
+		<ul class="accordion" data-responsive-accordion-tabs="accordion">
+			<h4>Your casefiles:</h4>
+				{% for cases in latest_cases %}
+					<li class="accordion-item" data-accordion-item>
+					    <a href="/case/{{ cases.id }}" class="accordion-title">{{ cases.title }}</a>
+						    <div class="accordion-content" data-tab-content>
+						      {{ cases.text | safe }}
+						    </div>
+						</li>
+				{% endfor %}
+				</ul>
+		<div class="columns" id="pages">
+			<nav aria-label="Pagination">
+				<ul class="pagination" role="navigation" aria-label="Pagination" id="mycases-pages-bar">
+					{% if total_pages == 1 %}
+								<li class="disabled" aria-label="Previous page">Previous<span class="show-for-sr">page</span></li>
+							    <li class="current"><span class="show-for-sr">You're on page</span>{{ current_page }}</li>
+						    	<li class="disabled" aria-label="Next page">Next <span class="show-for-sr">page</span></a></li>
+					    	</ul>
+				    	</nav>
+				    {% else %}
+				    	{% if current_page == 1 %}
+								<li class="disabled" aria-label="Previous page">Previous<span class="show-for-sr">page</span></a></li>
+							    <li class="current"><span class="show-for-sr">You're on page</span>{{ current_page }}</li>
+							    <li><a href="/mycases/{{ next_page }}" aria-label="Page {{ next_page }}">{{ next_page }}</a></li>
+						    	<li class="pagination-next" aria-label="Next page"><a href="/mycases/{{ next_page }}">Next <span class="show-for-sr">page</span></a></li>
+					    	</ul>
+				    	</nav>
+				    	{% endif %}
+					    {% if current_page != 1 and current_page < total_pages %}
+								<li class="pagination-previous" aria-label="Previous page"><a href="/mycases/{{ previous_page }}">Previous<span class="show-for-sr">page</span></a></li>
+								<li><a href="/mycases/{{ previous_page }}" aria-label="Page {{ previous_page }}">{{ previous_page }}</a></li>
+							    <li class="current"><span class="show-for-sr">You're on page</span>{{ current_page }}</li>
+							    <li><a href="/mycases/{{ next_page }}" aria-label="Page {{ next_page }}">{{ next_page }}</a></li>
+						    	<li class="pagination-next" aria-label="Next page"><a href="/mycases/{{ next_page }}">Next <span class="show-for-sr">page</span></a></li>
+					    	</ul>
+				    	</nav>
+		    			{% endif %}
+					    {% if current_page == total_pages %}
+								<li class="pagination-previous" aria-label="Previous page"><a href="/mycases/{{ previous_page }}">Previous<span class="show-for-sr">page</span></a></li>
+								<li><a href="/mycases/{{ previous_page }}" aria-label="Page {{ previous_page }}">{{ previous_page }}</a></li>
+							    <li class="current"><span class="show-for-sr">You're on page</span>{{ current_page }}</li>
+						    	<li class="disabled" aria-label="Next page">Next <span class="show-for-sr">page</span></a></li>
+					    	</ul>
+				    	</nav>
+		    			{% endif %}
+				    {% endif %}
+		</div>
+	</div>
+</nav>
+	{% else %}
+		<p>You currently have no casefiles.<a href="/case/create"> Make one now!</a></p>
+	{% endif %}
+{% endblock %}
+

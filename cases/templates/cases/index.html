@@ -1,0 +1,20 @@
+{% extends 'cases/base.html' %}
+
+{% if user.is_authenticated %}
+
+{% block content %}
+
+{% endblock %}
+
+{% else %}
+<body id="main-index">
+	<div class="grid-x">
+		<div class="cell" id="main-header">
+			<b>ecasefile</b>
+		</div>
+		<div class="cell" id="main-subheader">
+			a better way to casefile
+		</div>
+	</div>
+</body>
+{% endif %}

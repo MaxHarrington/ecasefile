@@ -1,0 +1,91 @@
+@media only screen and (max-device-width: 480px) {
+      .show-mobile {
+        display: block;
+      }
+      .hide-mobile {
+        display: none;
+      }
+    }
+
+ @media only screen and (min-device-width: 481px) {
+      .show-mobile {
+        display: none;
+      }
+      .hide-mobile {
+        display: block;
+      }
+    }
+
+#file-uploader{
+	width: 30%;
+	padding-top: 25px;
+	margin: auto;
+}
+
+#search-pages{
+	margin: auto;
+	padding-top: 25px;
+	width: 70%;
+}
+
+#individual-case-view{
+	width: 60%;
+	padding-top: 10px;
+	margin: auto;
+}
+
+#case-edit-button{
+	margin: auto;
+}
+
+#mycases-pages{
+	margin: auto;
+	padding-top: 25px;
+	width: 60%; 
+}
+
+#pages{
+	text-align: center;
+	padding-top: 1%;
+	padding-bottom: 1%;
+}
+
+#main-name{
+	font-style: italic;
+	font-size: 20px;
+}
+
+#title{
+	width: 30%;
+	margin: auto;
+	padding-top: 10px;
+	text-align: center;
+}
+
+#editor{
+	text-align: center;
+	padding-top: 3px;
+}
+
+#save-cancel-buttons{
+	padding-top: 20px;
+	margin: auto;
+	text-align: center;
+}
+
+#account-manage{
+	padding-right: 1%;
+}
+
+div{
+	font-family: 'IBM Plex Sans', sans-serif;
+}
+
+body{
+	font-family: 'IBM Plex Sans', sans-serif;
+}
+
+h4{
+	font-family: 'IBM Plex Sans', sans-serif;
+}
+

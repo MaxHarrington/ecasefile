@@ -1,0 +1,16 @@
+{% extends 'cases/base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<form method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Submit"/>
+    {% if username_taken %}
+    <p>That username is already taken! Choose a new one!</p>
+    {% endif %}
+</form>
+
+{% endblock %}

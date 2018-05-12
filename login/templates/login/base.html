@@ -1,0 +1,59 @@
+{% load static %}
+
+<!-- Foundation CSS -->
+<link rel="stylesheet" type="text/css" href="{% static 'cases/foundation/css/foundation.css'%}">
+
+<!-- Foundation JavaScript -->
+<script type="text/javascript" href="{% static 'cases/foundation/js/app.js'}"></script>
+
+<!-- Custom CSS -->
+<link rel="stylesheet" type="text/css" href="{% static 'cases/style.css' %}">
+
+<!-- Font CSS Link -->
+<link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans" rel="stylesheet">
+
+{% if user.is_authenticated %}
+
+<div class="top-bar" id="menu-panel">
+  <div class="top-bar-left" id="menu-bar-left">
+    <ul class="dropdown menu" data-dropdown-menu>
+      <li class="menu-text" id="main-name">ecasefile</li>
+      <li><a href="/">Home</a></li>
+      <li><a href="/case/create">Start New Case</a></li>
+      <li><a href="/mycases/">View My Cases</a></li>
+    </ul>
+  </div>
+  <div class="top-bar-right" id="menu-bar-right">
+    <ul class="menu">
+      <li><a href="/login/logout/">Logout</a></li>
+      <li><input id="search" type="text"></li>
+      <li><button type="button" class="button" onclick="location.href='/search/' + document.getElementById('search').value + '/1'" id="search-function">Search</button></li>
+    </ul>
+  </div>
+</div>
+</div>
+
+{% else %}
+
+<div class="top-bar" id="menu-panel">
+  <div class="top-bar-left" id="menu-bar-left">
+    <ul class="dropdown menu" data-dropdown-menu>
+      <li class="menu-text" id="main-name">ecasefile</li>
+      <li><a href="/">Home</a></li>
+    </ul>
+  </div>
+  <div class="top-bar-right" id="menu-bar-right">
+    <ul class="menu">
+      <li><a href="/login/">Login</a></li>
+      <li><input id="search" type="text"></li>
+      <li><button type="button" class="button" onclick="location.href='/search/' + document.getElementById('search').value + '/1'" id="search-function">Search</button></li>
+    </ul>
+  </div>
+</div>
+</div>
+
+{% endif %}
+
+{% block content %}
+
+{% endblock %}
