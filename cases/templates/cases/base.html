@@ -1,5 +1,4 @@
 {% load static %}
-
 <!doctype html>
 <html class="no-js" lang="en">
   <head>
@@ -13,9 +12,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="{% static "cases/ecasefile_logo.png" %}" />
   </head>
   <body>
-
   {% if user.is_authenticated %}
-
   <div class="show-for-large">
     <div class="top-bar" id="menu-panel">
       <div class="top-bar-left" id="menu-bar-left">
@@ -56,7 +53,6 @@
       </div>
     </div>
   </div>
-
   <div class="hide-for-large">
     <div class="off-canvas position-left" id="offCanvasLeft" data-off-canvas>
       <ul class="vertical menu">
@@ -80,9 +76,7 @@
         </div>
     </div>
   </div>
-
   {% else %}
-
   <div class="show-for-large">
     <div class="top-bar" id="menu-panel">
       <div class="top-bar-left" id="menu-bar-left">
@@ -100,7 +94,6 @@
       </div>
     </div>
   </div>
-
   <div class="hide-for-large">
       <div class="off-canvas position-left" id="offCanvasLeft" data-off-canvas>
         <ul class="vertical menu">
@@ -117,19 +110,13 @@
       </div>
     </div>
   </div>
-
-
   {% endif %}
-
   {% block content %}
-
   {% endblock %}
-
   <script src="{% static "cases/foundation/js/vendor/jquery.js" %}"></script>
   <script src="{% static "cases/foundation/js/vendor/what-input.js" %}"></script>
   <script src="{% static "cases/foundation/js/vendor/foundation.min.js" %}"></script>
   <script src="{% static "cases/foundation/js/vendor/jquery.cookie.js" %}"></script>
-
   <script>
     $(document).foundation();
   </script>

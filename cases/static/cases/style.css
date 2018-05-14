@@ -16,6 +16,11 @@
 	margin: auto;
 }
 
+#menu-bar-right{
+	width: 35%;
+	margin-right: auto;
+}
+
 #case-edit-button{
 	margin: auto;
 }
@@ -26,20 +31,8 @@
 	width: 60%; 
 }
 
-#mycases-pages-mobile{
-	margin: auto;
-	width: 100%; 
-	padding-top: 10px;
-}
-
 #search-medium{
 	width: 15%;
-}
-
-#pages{
-	text-align: center;
-	padding-top: 1%;
-	padding-bottom: 1%;
 }
 
 #main-name{
@@ -67,6 +60,37 @@
 
 #account-manage{
 	padding-right: 1%;
+}
+
+#case-search-view{
+	width: 90%;
+	padding-top: 15px;
+	margin: auto;
+}
+
+#add-to-saved{
+	margin: auto;
+	padding-right: 5%;
+}
+
+.pages{
+	margin: auto;
+}
+
+.pagination{
+	text-align: center;
+	padding-top: 1%;
+	padding-bottom: 1%;
+}
+
+.pages-mobile{
+	margin: auto;
+	width: 100%; 
+	padding-top: 10px;
+}
+
+.add-to-casefile{
+	float: right;
 }
 
 div{

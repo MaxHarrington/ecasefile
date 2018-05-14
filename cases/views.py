@@ -53,7 +53,7 @@ def search(request, search_term, page_number):
 # have the user set how many results per page they want globally
 @login_required
 def my_cases(request, page_number):
-	results_per_page = 8
+	results_per_page = 30
 	users_cases = owned_cases(request)
 	users_casefiles = owned_casefiles(request)
 	number_of_cases = len(users_cases)
@@ -105,6 +105,7 @@ def create_case(request):
 			return redirect('case', casefile_id=new_case.pk)
 	else:
 		form = TextForm()
+
 	return render(request, 'cases/edit_cases.html', {'form': form})
 
 # creates an empty casefile and description for a casefile
@@ -189,4 +190,3 @@ def edit(request, case_id):
 def add_cases(request, casefile_id):
 	specific_casefile = CaseFile.objects.get(pk=casefile_id)
 	can_edit = check_casefile_ownership(request, casefile_id)
-

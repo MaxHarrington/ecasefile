@@ -143,7 +143,5 @@ CKEDITOR_CONFIGS = {
         ],
         'removePlugins': 'elementspath',
         'scayt_autoStartup': 'true',
-        'autoGrow_onStartup': 'false',
-        'height': '70%',
         },
         }

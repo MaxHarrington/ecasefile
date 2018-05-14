@@ -3,16 +3,16 @@
 {% block content %}
 
 <div id='file-uploader'>
+	<div class="callout warning">
+		<h4>Only .docx (Microsoft Word) files are accepted.</h4>
+		<p>Most modern text editors offer the ability to export .docx files. Check your text editor's help documents for further information.</p>
+	</div>
 	<form method='post' enctype="multipart/form-data">
 		{% csrf_token %}
 		{{ form }}
 		<div id="save-cancel-buttons">
 			<button class="button" type="submit" value="Submit">Save</button>
 			<a class="button" href="/mycases/1">Cancel</a>
-		</div>
-		<div class="callout warning">
-			<h4>Only .docx (Microsoft Word) files are accepted.</h4>
-			<p>Most modern text editors offer the ability to export .docx files. Check your text editor's help documents for further information.</p>
 		</div>
 	</form>
 </div>

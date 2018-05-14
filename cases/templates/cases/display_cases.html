@@ -4,124 +4,132 @@
 
 {% if latest_cases %}
 
-<div class="show-for-large">				
-	{% if users_casefiles %}
-	<button type="button" class="button" onclick="
-	$('input:checkbox:checked').each(function () { var checkedBox = this.attr('id') $.cookie('checkedBox', 'true')}; return ">Add selected to casefile list.</button>
-	{% endif %}
-	<div id="mycases-pages">
-		{% for cases in latest_cases %}
-			<div class="callout secondary" id="callout-standard">
-				<h5>{{ cases.title }}</h5>
-				<p><i>by {{ cases.author }}, published on {{ cases.time_posted }}</i></p>
-				<a href="/case/{{cases.id}}">Case description/tag placeholder</a>
+<div class="show-for-large">
+	<div class="grid-x" id="case-search-view">
+		<div class="cell small-4" id="left-casefile-panel">
+		    <div class="sticky" data-sticky data-margin-top="4" data-anchor="left-casefile-panel">		
 				{% if users_casefiles %}
-      			<input class="add-to-casefile" type="checkbox" id="{{ cases.id }}"><label for="add-to-casefile">Add this case to your saved list.</label>
-			    {% endif %}
+				<label>Add the selected cases to one of your casefiles:
+					<select id="select">
+						<option value=""></option>
+						{% for casefiles in users_casefiles %}
+						<option value="{{ casefiles.title }}">{{ casefiles.title }}</option>
+						{% endfor %}
+					</select>
+				</label>
+				<div id="add-to-saved">
+					<button type="button" class="button" onclick="$('input:checkbox:checked').each(function () { var checkedBox = $(this).attr('id'); });">Add to casefile</button>
 				</div>
-		{% endfor %}
+				{% endif %}
+			</div>
+		</div>
+		<div class="cell auto">
+			{% for cases in latest_cases %}
+				<div class="callout secondary" id="callout-standard">
+					<h5>{{ cases.title }}</h5>
+					<p><i>by {{ cases.author }}, published on {{ cases.time_posted }}</i></p>
+					<a href="/case/{{cases.id}}">Case description/tag placeholder</a>
+					{% if users_casefiles %}
+					<input class="add-to-casefile" type="checkbox" id="{{ cases.id }}">
+					{% endif %}
+					</div>
+			{% endfor %}
+		</div>
 	</div>
-	<div class="columns" id="pages">
-			<nav aria-label="Pagination">
-				<ul class="pagination" role="navigation" aria-label="Pagination" id="mycases-pages-bar">
-					{% if total_pages == 1 %}
-								<li class="disabled" aria-label="Previous page">Previous<span class="show-for-sr">page</span></li>
-							    <li class="current"><span class="show-for-sr">You're on page</span>{{ current_page }}</li>
-						    	<li class="disabled" aria-label="Next page">Next <span class="show-for-sr">page</span></a></li>
-					    	</ul>
-				    	</nav>
-				    {% else %}
-				    	{% if current_page == 1 %}
-								<li class="disabled" aria-label="Previous page">Previous<span class="show-for-sr">page</span></a></li>
-							    <li class="current"><span class="show-for-sr">You're on page</span>{{ current_page }}</li>
-							    <li><a href="/mycases/{{ next_page }}" aria-label="Page {{ next_page }}">{{ next_page }}</a></li>
-						    	<li class="pagination-next" aria-label="Next page"><a href="/mycases/{{ next_page }}">Next <span class="show-for-sr">page</span></a></li>
-					    	</ul>
-				    	</nav>
-				    	{% endif %}
-					    {% if current_page != 1 and current_page < total_pages %}
-								<li class="pagination-previous" aria-label="Previous page"><a href="/mycases/{{ previous_page }}">Previous<span class="show-for-sr">page</span></a></li>
-								<li><a href="/mycases/{{ previous_page }}" aria-label="Page {{ previous_page }}">{{ previous_page }}</a></li>
-							    <li class="current"><span class="show-for-sr">You're on page</span>{{ current_page }}</li>
-							    <li><a href="/mycases/{{ next_page }}" aria-label="Page {{ next_page }}">{{ next_page }}</a></li>
-						    	<li class="pagination-next" aria-label="Next page"><a href="/mycases/{{ next_page }}">Next <span class="show-for-sr">page</span></a></li>
-					    	</ul>
-				    	</nav>
-		    			{% endif %}
-					    {% if current_page == total_pages %}
-								<li class="pagination-previous" aria-label="Previous page"><a href="/mycases/{{ previous_page }}">Previous<span class="show-for-sr">page</span></a></li>
-								<li><a href="/mycases/{{ previous_page }}" aria-label="Page {{ previous_page }}">{{ previous_page }}</a></li>
-							    <li class="current"><span class="show-for-sr">You're on page</span>{{ current_page }}</li>
-						    	<li class="disabled" aria-label="Next page">Next <span class="show-for-sr">page</span></a></li>
-					    	</ul>
-				    	</nav>
-		    			{% endif %}
-				    {% endif %}
+	<div class="columns" class="pages">
+		<nav aria-label="Pagination">
+			<ul class="pagination" role="navigation" aria-label="Pagination" id="mycases-pages-bar">
+				<h6>Showing: Page {{ current_page }} of {{ total_pages }}</h6>
+				{% if total_pages == 1 %}
+							<li class="disabled" aria-label="Previous page">Previous<span class="show-for-sr">page</span></li>
+							<li class="current"><span class="show-for-sr">You're on page</span>{{ current_page }}</li>
+							<li class="disabled" aria-label="Next page">Next <span class="show-for-sr">page</span></a></li>
+						</ul>
+					</nav>
+				{% else %}
+					{% if current_page == 1 %}
+							<li class="disabled" aria-label="Previous page">Previous<span class="show-for-sr">page</span></a></li>
+							<li class="current"><span class="show-for-sr">You're on page</span>{{ current_page }}</li>
+							<li><a href="/mycases/{{ next_page }}" aria-label="Page {{ next_page }}">{{ next_page }}</a></li>
+							<li class="pagination-next" aria-label="Next page"><a href="/mycases/{{ next_page }}">Next <span class="show-for-sr">page</span></a></li>
+						</ul>
+					</nav>
+					{% endif %}
+					{% if current_page != 1 and current_page < total_pages %}
+							<li class="pagination-previous" aria-label="Previous page"><a href="/mycases/{{ previous_page }}">Previous<span class="show-for-sr">page</span></a></li>
+							<li><a href="/mycases/{{ previous_page }}" aria-label="Page {{ previous_page }}">{{ previous_page }}</a></li>
+							<li class="current"><span class="show-for-sr">You're on page</span>{{ current_page }}</li>
+							<li><a href="/mycases/{{ next_page }}" aria-label="Page {{ next_page }}">{{ next_page }}</a></li>
+							<li class="pagination-next" aria-label="Next page"><a href="/mycases/{{ next_page }}">Next <span class="show-for-sr">page</span></a></li>
+						</ul>
+					</nav>
+					{% endif %}
+					{% if current_page == total_pages %}
+							<li class="pagination-previous" aria-label="Previous page"><a href="/mycases/{{ previous_page }}">Previous<span class="show-for-sr">page</span></a></li>
+							<li><a href="/mycases/{{ previous_page }}" aria-label="Page {{ previous_page }}">{{ previous_page }}</a></li>
+							<li class="current"><span class="show-for-sr">You're on page</span>{{ current_page }}</li>
+							<li class="disabled" aria-label="Next page">Next <span class="show-for-sr">page</span></a></li>
+						</ul>
+					</nav>
+					{% endif %}
+				{% endif %}
 		</div>
 </div>
-
 <div class="hide-for-large">
-	<div id="mycases-pages-mobile">
-		<ul class="accordion" data-responsive-accordion-tabs="accordion">
-			<h4>Your casefiles:</h4>
-				{% for cases in latest_cases %}
-					<li class="accordion-item" data-accordion-item>
-					    <a href="/case/{{ cases.id }}" class="accordion-title">{{ cases.title }}</a>
-						    <div class="accordion-content" data-tab-content>
-								{% if users_casefiles %}
-								<label>Add to casefile:
-							      	<select id="select">
-							      	{% for casefiles in users_casefiles %}
-								          <option value="{{ casefiles.title }}">{{ casefiles.title }}</option>
-								        </select>
-								    {% endfor %}
-							      </label>
-							    {% endif %}
-						    </div>
-						</li>
-				{% endfor %}
-				</ul>
-		<div class="columns" id="pages">
+	<ul class="accordion" data-responsive-accordion-tabs="accordion">
+	{% for cases in latest_cases %}
+		<li class="accordion-item" data-accordion-item>
+			<a href="/case/{{ cases.id }}" class="accordion-title">{{ cases.title }}</a>
+				<div class="accordion-content" data-tab-content>
+					{% if users_casefiles %}
+						<input class="add-to-casefile" type="checkbox" id="{{ cases.id }}"><label for="add-to-casefile">Add this case to your saved list.</label>
+					{% endif %}
+				</div>
+			</li>
+	{% endfor %}
+	</ul>
+	{% if users_casefiles %}
+		<button type="button" class="button" onclick="$('input:checkbox:checked').each(function () { var checkedBox = $(this).attr('id'); $.cookie(checkedBox, 'True'); });">Add to casefile list</button>
+	{% endif %}
+		<div class="columns">
 			<nav aria-label="Pagination">
 				<ul class="pagination" role="navigation" aria-label="Pagination" id="mycases-pages-bar">
 					{% if total_pages == 1 %}
 								<li class="disabled" aria-label="Previous page">Previous<span class="show-for-sr">page</span></li>
-							    <li class="current"><span class="show-for-sr">You're on page</span>{{ current_page }}</li>
-						    	<li class="disabled" aria-label="Next page">Next <span class="show-for-sr">page</span></a></li>
-					    	</ul>
-				    	</nav>
-				    {% else %}
-				    	{% if current_page == 1 %}
+								<li class="current"><span class="show-for-sr">You're on page</span>{{ current_page }}</li>
+								<li class="disabled" aria-label="Next page">Next <span class="show-for-sr">page</span></a></li>
+							</ul>
+						</nav>
+					{% else %}
+						{% if current_page == 1 %}
 								<li class="disabled" aria-label="Previous page">Previous<span class="show-for-sr">page</span></a></li>
-							    <li class="current"><span class="show-for-sr">You're on page</span>{{ current_page }}</li>
-							    <li><a href="/mycases/{{ next_page }}" aria-label="Page {{ next_page }}">{{ next_page }}</a></li>
-						    	<li class="pagination-next" aria-label="Next page"><a href="/mycases/{{ next_page }}">Next <span class="show-for-sr">page</span></a></li>
-					    	</ul>
-				    	</nav>
-				    	{% endif %}
-					    {% if current_page != 1 and current_page < total_pages %}
+								<li class="current"><span class="show-for-sr">You're on page</span>{{ current_page }}</li>
+								<li><a href="/mycases/{{ next_page }}" aria-label="Page {{ next_page }}">{{ next_page }}</a></li>
+								<li class="pagination-next" aria-label="Next page"><a href="/mycases/{{ next_page }}">Next <span class="show-for-sr">page</span></a></li>
+							</ul>
+						</nav>
+						{% endif %}
+						{% if current_page != 1 and current_page < total_pages %}
 								<li class="pagination-previous" aria-label="Previous page"><a href="/mycases/{{ previous_page }}">Previous<span class="show-for-sr">page</span></a></li>
 								<li><a href="/mycases/{{ previous_page }}" aria-label="Page {{ previous_page }}">{{ previous_page }}</a></li>
-							    <li class="current"><span class="show-for-sr">You're on page</span>{{ current_page }}</li>
-							    <li><a href="/mycases/{{ next_page }}" aria-label="Page {{ next_page }}">{{ next_page }}</a></li>
-						    	<li class="pagination-next" aria-label="Next page"><a href="/mycases/{{ next_page }}">Next <span class="show-for-sr">page</span></a></li>
-					    	</ul>
-				    	</nav>
-		    			{% endif %}
-					    {% if current_page == total_pages %}
+								<li class="current"><span class="show-for-sr">You're on page</span>{{ current_page }}</li>
+								<li><a href="/mycases/{{ next_page }}" aria-label="Page {{ next_page }}">{{ next_page }}</a></li>
+								<li class="pagination-next" aria-label="Next page"><a href="/mycases/{{ next_page }}">Next <span class="show-for-sr">page</span></a></li>
+							</ul>
+						</nav>
+						{% endif %}
+						{% if current_page == total_pages %}
 								<li class="pagination-previous" aria-label="Previous page"><a href="/mycases/{{ previous_page }}">Previous<span class="show-for-sr">page</span></a></li>
 								<li><a href="/mycases/{{ previous_page }}" aria-label="Page {{ previous_page }}">{{ previous_page }}</a></li>
-							    <li class="current"><span class="show-for-sr">You're on page</span>{{ current_page }}</li>
-						    	<li class="disabled" aria-label="Next page">Next <span class="show-for-sr">page</span></a></li>
-					    	</ul>
-				    	</nav>
-		    			{% endif %}
-				    {% endif %}
+								<li class="current"><span class="show-for-sr">You're on page</span>{{ current_page }}</li>
+								<li class="disabled" aria-label="Next page">Next <span class="show-for-sr">page</span></a></li>
+							</ul>
+						</nav>
+						{% endif %}
+					{% endif %}
 		</div>
 	</div>
-</div>
 	{% else %}
 		<p>You currently have no casefiles.<a href="/case/create"> Make one now!</a></p>
 	{% endif %}
 {% endblock %}
-

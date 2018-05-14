@@ -30,8 +30,11 @@ class Case(models.Model):
 
 class CaseFileManager(models.Manager):
 	def create_casefile(self, title, cases, user):
-		case = self.create(title=title, author=user)
-		return case
+		casefile = self.create(title=title, author=user)
+		return casefile
+
+	def add_case(self, case):
+		self.add(case)
 
 class CaseFile(models.Model):
 	title = models.CharField(max_length=100)
