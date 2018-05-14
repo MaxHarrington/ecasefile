@@ -17,5 +17,9 @@
 	{% if can_edit %}
 	<a id="case-edit-button" class="button" href="/case/{{ specific_case.id }}/edit">Edit casefile entry</a>
 	{% endif %}
+
+	{% if user.is_authenticated %}
+	<a id="case-edit-button" class="button" href="/case/{{ specific_case.id }}/edit">Add to saved cases list</a>
+	{% endif %}
 </div>
 {% endblock %}

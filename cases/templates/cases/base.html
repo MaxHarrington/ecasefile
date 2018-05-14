@@ -14,10 +14,9 @@
   </head>
   <body>
 
-    {% if user.is_authenticated %}
+  {% if user.is_authenticated %}
 
-  <nav class="hide-mobile">
-
+  <div class="show-for-large">
     <div class="top-bar" id="menu-panel">
       <div class="top-bar-left" id="menu-bar-left">
         <ul class="dropdown menu" data-dropdown-menu>
@@ -56,12 +55,9 @@
         </ul>
       </div>
     </div>
-    </div>
+  </div>
 
-  </nav>
-
-  <nav class="show-mobile">
-
+  <div class="hide-for-large">
     <div class="off-canvas position-left" id="offCanvasLeft" data-off-canvas>
       <ul class="vertical menu">
         <li><a href="/">Home</a></li>
@@ -74,24 +70,20 @@
         <li><a href="#">Change Password</a></li>
         <li><a href="/login/logout">Logout</a></li>
       </ul>
-
-  </div>
-
-  <div class="off-canvas-content" data-off-canvas-content>
-    
-    <div class="title-bar">
-      <div class="title-bar-left">
-        <button class="menu-icon" type="button" data-open="offCanvasLeft"></button>
-        <span class="title-bar-title">ecasefile</span>
-      </div>
+    </div>
+      <div class="off-canvas-content" data-off-canvas-content>
+        <div class="title-bar">
+          <div class="title-bar-left">
+            <button class="menu-icon" type="button" data-open="offCanvasLeft"></button>
+            <span class="title-bar-title">ecasefile</span>
+          </div>
+        </div>
     </div>
   </div>
 
-  </nav>
-
   {% else %}
-  <nav class="hide-mobile">
 
+  <div class="show-for-large">
     <div class="top-bar" id="menu-panel">
       <div class="top-bar-left" id="menu-bar-left">
         <ul class="dropdown menu" data-dropdown-menu>
@@ -107,30 +99,25 @@
         </ul>
       </div>
     </div>
-
-  </nav>
-
-  <nav class="show-mobile">
-
-    <div class="off-canvas position-left" id="offCanvasLeft" data-off-canvas>
-      <ul class="vertical menu">
-        <li><a href="/">Home</a></li>
-        <li><a href="/login/">Login</a></li>
-      </ul>
-    </div>
-
-  <div class="off-canvas-content" data-off-canvas-content>
-    
-    <div class="title-bar">
-      <div class="title-bar-left">
-        <button class="menu-icon" type="button" data-open="offCanvasLeft"></button>
-        <span class="title-bar-title">ecasefile</span>
-      </div>
-    </div>
-
   </div>
 
-  </nav>
+  <div class="hide-for-large">
+      <div class="off-canvas position-left" id="offCanvasLeft" data-off-canvas>
+        <ul class="vertical menu">
+          <li><a href="/">Home</a></li>
+          <li><a href="/login/">Login</a></li>
+        </ul>
+      </div>
+    <div class="off-canvas-content" data-off-canvas-content>
+      <div class="title-bar">
+        <div class="title-bar-left">
+          <button class="menu-icon" type="button" data-open="offCanvasLeft"></button>
+          <span class="title-bar-title">ecasefile</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
 
   {% endif %}
 
@@ -141,14 +128,10 @@
   <script src="{% static "cases/foundation/js/vendor/jquery.js" %}"></script>
   <script src="{% static "cases/foundation/js/vendor/what-input.js" %}"></script>
   <script src="{% static "cases/foundation/js/vendor/foundation.min.js" %}"></script>
+  <script src="{% static "cases/foundation/js/vendor/jquery.cookie.js" %}"></script>
 
   <script>
     $(document).foundation();
   </script>
-
-  <nav class="show-mobile">
-    </div>
-  </nav>
-
   </body>
 </html>

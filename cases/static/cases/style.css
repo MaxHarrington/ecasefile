@@ -1,21 +1,3 @@
-@media only screen and (max-device-width: 480px) {
-      .show-mobile {
-        display: block;
-      }
-      .hide-mobile {
-        display: none;
-      }
-    }
-
- @media only screen and (min-device-width: 481px) {
-      .show-mobile {
-        display: none;
-      }
-      .hide-mobile {
-        display: block;
-      }
-    }
-
 #file-uploader{
 	width: 30%;
 	padding-top: 25px;
@@ -42,6 +24,16 @@
 	margin: auto;
 	padding-top: 25px;
 	width: 60%; 
+}
+
+#mycases-pages-mobile{
+	margin: auto;
+	width: 100%; 
+	padding-top: 10px;
+}
+
+#search-medium{
+	width: 15%;
 }
 
 #pages{

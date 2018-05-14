@@ -16,6 +16,15 @@ def check_ownership(request, case_id):
 	else:
 		return False
 
+def check_casefile_ownership(request, casefile_id):
+	unverified_casefile = CaseFile.objects.get(pk=casefile_id)
+	unverified_username = request.user.username
+
+	if str(unverified_casefile.author) == str(unverified_username):
+		return True
+	else:
+		return False
+
 # returns all cases 'owned' by the logged-in user
 def owned_cases(request):
 	username = request.user

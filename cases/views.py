@@ -7,7 +7,7 @@ from math import ceil
 
 from .forms import TextForm, CasefileForm, UploadCase
 from .models import Case, CaseFile, RawFile
-from .permissions import check_ownership, owned_cases, owned_casefiles
+from .permissions import check_ownership, check_casefile_ownership, owned_cases, owned_casefiles
 from .searchtools import basic_search 
 from .imports import convert_docx
 
@@ -73,7 +73,8 @@ def my_cases(request, page_number):
 		'total_pages': number_of_pages,
 		'current_page': page_number,
 		'next_page': next_page,
-		'previous_page': previous_page
+		'previous_page': previous_page,
+		'users_casefiles': users_casefiles,
 	}
 
 	return render(request, 'cases/display_cases.html', context)
@@ -183,3 +184,9 @@ def edit(request, case_id):
 		return render(request, 'cases/edit_cases.html', context)
 	else:
 		raise PermissionDenied
+
+@login_required
+def add_cases(request, casefile_id):
+	specific_casefile = CaseFile.objects.get(pk=casefile_id)
+	can_edit = check_casefile_ownership(request, casefile_id)
+

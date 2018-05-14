@@ -14,4 +14,5 @@ urlpatterns = [
 	path('case/process_case/<int:file_id>', views.process_case, name='process_case'),
 	path('casefile/create', views.create_casefile, name='create_casefile'),
 	path('casefile/<int:casefile_id>', views.casefile, name='casefile'),
+	path('casefile/<int:casefile_id>/add_cases', views.add_cases, name='add_cases'),
 ]

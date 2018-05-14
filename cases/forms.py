@@ -1,5 +1,5 @@
 from django import forms
-from .models import RawFile
+from .models import Case, CaseFile, RawFile
 from ckeditor.widgets import CKEditorWidget
 
 class TextForm(forms.Form):
