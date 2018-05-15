@@ -53,7 +53,7 @@ def search(request, search_term, page_number):
 # have the user set how many results per page they want globally
 @login_required
 def my_cases(request, page_number):
-	results_per_page = 30
+	results_per_page = 10
 	users_cases = owned_cases(request)
 	users_casefiles = owned_casefiles(request)
 	number_of_cases = len(users_cases)
@@ -190,3 +190,15 @@ def edit(request, case_id):
 def add_cases(request, casefile_id):
 	specific_casefile = CaseFile.objects.get(pk=casefile_id)
 	can_edit = check_casefile_ownership(request, casefile_id)
+	cookie_unfiltered = list()
+	cases = list()
+
+	for cookies in request.COOKIES:
+		cookie_unfiltered.append(cookies)
+
+	for cookie in cookie_unfiltered:
+		if cookie != 'csrftoken' and cookie != 'sessionid':
+			cases.append(cookie)
+
+	if not cases:
+		return render(request, 'cases/add_cases.html', context)

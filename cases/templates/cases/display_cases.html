@@ -6,7 +6,7 @@
 
 <div class="show-for-large">
 	<div class="grid-x" id="case-search-view">
-		<div class="cell small-4" id="left-casefile-panel">
+		<div class="cell small-3" id="left-casefile-panel">
 		    <div class="sticky" data-sticky data-margin-top="4" data-anchor="left-casefile-panel">		
 				{% if users_casefiles %}
 				<label>Add the selected cases to one of your casefiles:
@@ -18,10 +18,13 @@
 					</select>
 				</label>
 				<div id="add-to-saved">
-					<button type="button" class="button" onclick="$('input:checkbox:checked').each(function () { var checkedBox = $(this).attr('id'); });">Add to casefile</button>
+					<button type="button" class="button" onclick="$("input:checkbox:checked").each(function () { var checkedBoxes = $(this).attr("id"); localStorage.setItem(checkedBoxes, "True");});">Add to casefile</button>
 				</div>
 				{% endif %}
 			</div>
+		</div>
+		<div class="cell small-1">
+			
 		</div>
 		<div class="cell auto">
 			{% for cases in latest_cases %}
