@@ -21,7 +21,7 @@
 								{% endfor %}
 							</select>
 						</label>
-						<button type="submit" class="button" value="Submit" onclick="arraySelected = new Array; $('input:checkbox:checked').each(function () { var checkedBox = $(this).attr('id'); arraySelected.push(checkedBox);}); $('#id_cases').val(arraySelected); ">Add to casefile</button>
+						<button type="submit" class="button" value="Submit" onclick="selectCases();">Add to casefile</button>
 					</form>
 				</div>
 				{% endif %}
