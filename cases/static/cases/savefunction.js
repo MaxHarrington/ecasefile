@@ -4,10 +4,8 @@ function selectCases() {
 		var checkedBox = $(this).attr('id'); 
 		arraySelected.push(checkedBox);
 	}); 
-
+	
 	$('#id_cases').val(arraySelected); 
-
-	$('#select-casefile').each(function () { 
-		var casefileTitle = $(this).attr('id');
-	});
-}	
+	var selectedCasefile = $('select#select-casefile').val();
+	document.getElementById("id_title").value = selectedCasefile;
+}

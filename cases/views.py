@@ -71,11 +71,10 @@ def my_cases(request, page_number):
 	if request.method == 'POST':
 		form = AddCasesForm(request.POST)
 		if form.is_valid():
-			
+			form.
 			return redirect('my_cases', page_number=page_number)
 	else:
 		form = AddCasesForm()
-
 
 	context = {
 		'latest_cases': users_cases[lower_bound_results:result_number],
