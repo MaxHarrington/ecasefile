@@ -9,16 +9,20 @@
 		<div class="cell small-3" id="left-casefile-panel">
 		    <div class="sticky" data-sticky data-margin-top="4" data-anchor="left-casefile-panel">		
 				{% if users_casefiles %}
-				<label>Add the selected cases to one of your casefiles:
-					<select id="select">
-						<option value=""></option>
-						{% for casefiles in users_casefiles %}
-						<option value="{{ casefiles.title }}">{{ casefiles.title }}</option>
-						{% endfor %}
-					</select>
-				</label>
 				<div id="add-to-saved">
-					<button type="button" class="button" onclick="$("input:checkbox:checked").each(function () { var checkedBoxes = $(this).attr("id"); localStorage.setItem(checkedBoxes, "True");});">Add to casefile</button>
+					<form method="POST" id="case-listing">
+						{% csrf_token %}
+						{{ form }}
+						<label>Add the selected cases to one of your casefiles:
+							<select id="select-casefile">
+								<option value=""></option>
+								{% for casefiles in users_casefiles %}
+								<option value="{{ casefiles.title }}">{{ casefiles.title }}</option>
+								{% endfor %}
+							</select>
+						</label>
+						<button type="submit" class="button" value="Submit" onclick="arraySelected = new Array; $('input:checkbox:checked').each(function () { var checkedBox = $(this).attr('id'); arraySelected.push(checkedBox);}); $('#id_cases').val(arraySelected); ">Add to casefile</button>
+					</form>
 				</div>
 				{% endif %}
 			</div>

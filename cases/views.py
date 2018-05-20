@@ -5,7 +5,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 
 from math import ceil
 
-from .forms import TextForm, CasefileForm, UploadCase
+from .forms import TextForm, CasefileForm, UploadCase, AddCasesForm
 from .models import Case, CaseFile, RawFile
 from .permissions import check_ownership, check_casefile_ownership, owned_cases, owned_casefiles
 from .searchtools import basic_search 
@@ -53,7 +53,7 @@ def search(request, search_term, page_number):
 # have the user set how many results per page they want globally
 @login_required
 def my_cases(request, page_number):
-	results_per_page = 10
+	results_per_page = 20
 	users_cases = owned_cases(request)
 	users_casefiles = owned_casefiles(request)
 	number_of_cases = len(users_cases)
@@ -68,6 +68,15 @@ def my_cases(request, page_number):
 	next_page = page_number + 1
 	previous_page = page_number - 1
 
+	if request.method == 'POST':
+		form = AddCasesForm(request.POST)
+		if form.is_valid():
+			
+			return redirect('my_cases', page_number=page_number)
+	else:
+		form = AddCasesForm()
+
+
 	context = {
 		'latest_cases': users_cases[lower_bound_results:result_number],
 		'total_pages': number_of_pages,
@@ -75,6 +84,7 @@ def my_cases(request, page_number):
 		'next_page': next_page,
 		'previous_page': previous_page,
 		'users_casefiles': users_casefiles,
+		'form': form,
 	}
 
 	return render(request, 'cases/display_cases.html', context)
@@ -193,12 +203,4 @@ def add_cases(request, casefile_id):
 	cookie_unfiltered = list()
 	cases = list()
 
-	for cookies in request.COOKIES:
-		cookie_unfiltered.append(cookies)
-
-	for cookie in cookie_unfiltered:
-		if cookie != 'csrftoken' and cookie != 'sessionid':
-			cases.append(cookie)
-
-	if not cases:
-		return render(request, 'cases/add_cases.html', context)
+	return render(request, 'cases/add_cases.html', context)
