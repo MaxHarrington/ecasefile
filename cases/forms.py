@@ -14,7 +14,6 @@ class AddCasesForm(forms.ModelForm):
 	class Meta:
 		model = CaseFile
 		fields = ('cases', 'title',)
-		widgets = {'any_field': forms.HiddenInput(),}
 
 class UploadCase(forms.ModelForm):
 	class Meta:

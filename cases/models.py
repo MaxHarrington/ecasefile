@@ -33,9 +33,6 @@ class CaseFileManager(models.Manager):
 		casefile = self.create(title=title, author=user)
 		return casefile
 
-	def add_case(self, case):
-		self.add(case)
-
 class CaseFile(models.Model):
 	title = models.CharField(max_length=100)
 	time_posted = models.DateTimeField(auto_now=False, auto_now_add=True)

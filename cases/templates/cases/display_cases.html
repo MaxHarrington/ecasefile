@@ -11,8 +11,10 @@
 				{% if users_casefiles %}
 				<div id="add-to-saved">
 					<form method="POST" id="case-listing">
-						{% csrf_token %}
-						{{ form }}
+						<div id="hidden-casefile-input">
+							{% csrf_token %}
+							{{ form }}
+						</div>
 						<label>Add the selected cases to one of your casefiles:
 							<select id="select-casefile">
 								<option value=""></option>
@@ -21,7 +23,7 @@
 								{% endfor %}
 							</select>
 						</label>
-						<button type="submit" class="button" value="Submit" onclick="selectCases();">Add to casefile</button>
+						<button type="submit" value="Submit" class="button" onclick="selectCases();">Add to casefile</button>
 					</form>
 				</div>
 				{% endif %}
