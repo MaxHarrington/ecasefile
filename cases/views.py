@@ -145,9 +145,11 @@ def create_casefile(request):
 			description = form.cleaned_data['description']
 			author = request.user
 			new_casefile = CaseFile.objects.create_casefile(title, description, author)
-			return redirect('casefile', case_id=new_casefile.pk)
+
+			return redirect('casefile', casefile_id=new_casefile.pk)
 	else:
 		form = CasefileForm()
+
 	return render(request, 'cases/create_casefile.html', {'form': form})
 
 # takes and uploads a file, then calls the process_case url to complete the file

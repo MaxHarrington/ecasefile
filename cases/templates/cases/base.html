@@ -13,7 +13,7 @@
   </head>
   <body>
   {% if user.is_authenticated %}
-  <div class="show-for-small">
+  <div class="show-for-medium">
     <div class="top-bar" id="menu-panel">
       <div class="top-bar-left" id="menu-bar-left">
         <ul class="dropdown menu" data-dropdown-menu>
@@ -23,7 +23,7 @@
             <a href="/mycases/1">View My Casefiles</a>
             <ul class="menu vertical">
               <li><a href="/mycases/1">View My Casefiles</a></li>
-              <li><a data-open="exampleModal1">Start New Casefile</a></li>
+              <li><a data-open="create-casefile-modal">Start New Casefile</a></li>
               <li><a href="/mycases/1">Edit My Casefiles</a></li>
             </ul>
           </li>
@@ -52,13 +52,24 @@
         </ul>
       </div>
     </div>
+    <div class="reveal" id="create-casefile-modal" data-reveal data-animation-in="fade-in fade-out">
+      <button class="close-button" data-close aria-label="Close modal" type="button"><span aria-hidden="true">&times;</span></button>
+      <form method="post" action="/casefile/create" id="casefile-creation">
+        {% csrf_token %}
+        <input type="text" name="title" placeholder="Your amazing casefile title goes here..." />
+        <input type="text" name="description"/ placeholder="Describe your casefile here...">
+        <div id="save-cancel-buttons">
+        <button class="button" type="submit" value="Submit">Save New Casefile</button>
+      </form>
+    </div>
   </div>
+</div>
   <div class="hide-for-medium">
     <div class="off-canvas position-left" id="offCanvasLeft" data-off-canvas>
       <ul class="vertical menu">
         <li><a href="/">Home</a></li>
         <li><a href="/mycases/1">View My Casefiles</a></li>
-        <li><a href="/mycases/1">Start New Casefile</a></li>
+        <li><a data-open="create-casefile-modal-mobile">Start New Casefile</a></li>
         <li><a href="/mycases/1">View My Articles</a></li>
         <li><a href="/case/create">Start New Article</a></li>
         <li><a href="/case/upload">Upload New Article</a></li>
@@ -74,19 +85,18 @@
             <span class="title-bar-title">ecasefile</span>
           </div>
         </div>
+      </div>
     </div>
-  </div>
-
-  <div class="reveal" id="exampleModal1" data-reveal>
-    <button class="close-button" data-close aria-label="Close modal" type="button"></button>
-    <span aria-hidden="true">&times;</span>
-    <form method="post" action="/create_casefile/" id="casefile-creation">
-      {% csrf_token %}
-          DATA FOR FORM MUST GO HERE
-      <div id="save-cancel-buttons">
-      <button class="button" type="submit" value="Submit">Save</button>
-      <a class="button" href="/mycases/1">Cancel</a>
-    </form>
+    <div class="reveal" id="create-casefile-modal-mobile" data-reveal data-animation-in="fade-in fade-out">
+      <button class="close-button" data-close aria-label="Close modal" type="button"><span aria-hidden="true">&times;</span></button>
+      <form method="post" action="/casefile/create" id="casefile-creation">
+        {% csrf_token %}
+        <input type="text" name="title" placeholder="Your amazing casefile title goes here..." />
+        <input type="text" name="description"/ placeholder="Describe your casefile here...">
+        <div id="save-cancel-buttons">
+        <button class="button" type="submit" value="Submit">Save</button>
+      </form>
+    </div>
   </div>
 
   {% else %}
@@ -124,8 +134,10 @@
     </div>
   </div>
   {% endif %}
+
   {% block content %}
   {% endblock %}
+
   <script src="{% static "cases/foundation/js/vendor/jquery.js" %}"></script>
   <script src="{% static "cases/foundation/js/vendor/what-input.js" %}"></script>
   <script src="{% static "cases/foundation/js/vendor/foundation.min.js" %}"></script>
