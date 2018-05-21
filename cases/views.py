@@ -213,12 +213,3 @@ def edit(request, case_id):
 		return render(request, 'cases/edit_cases.html', context)
 	else:
 		raise PermissionDenied
-
-@login_required
-def add_cases(request, casefile_id):
-	specific_casefile = CaseFile.objects.get(pk=casefile_id)
-	can_edit = check_casefile_ownership(request, casefile_id)
-	cookie_unfiltered = list()
-	cases = list()
-
-	return render(request, 'cases/add_cases.html', context)
