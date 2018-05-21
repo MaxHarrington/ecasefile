@@ -44,7 +44,21 @@ def casefile(request, casefile_id):
 # replaces %20 (the stand-in for a space in a url) with an actual space
 # for the database query to avoid querying the database with nonsense
 def search(request, search_term, page_number):
+	users_casefiles = owned_casefiles(request)
 	context = basic_search(search_term, page_number)
+	context['users_casefiles'] = users_casefiles
+
+	if request.method == 'POST':
+		form = AddCasesForm(request.POST)
+		if form.is_valid():
+			casefile = CaseFile.objects.get(title=form.cleaned_data['title'])
+			for cases in form.cleaned_data['cases']:
+				casefile.cases.add(cases.id)
+
+			return redirect('search', search_term=search_term, page_number=page_number)
+	else:
+		form = AddCasesForm()
+		context['form'] = form
 
 	return render(request, 'cases/display_cases.html', context)
 

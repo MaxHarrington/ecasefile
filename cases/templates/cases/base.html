@@ -13,7 +13,7 @@
   </head>
   <body>
   {% if user.is_authenticated %}
-  <div class="show-for-large">
+  <div class="show-for-small">
     <div class="top-bar" id="menu-panel">
       <div class="top-bar-left" id="menu-bar-left">
         <ul class="dropdown menu" data-dropdown-menu>
@@ -23,7 +23,7 @@
             <a href="/mycases/1">View My Casefiles</a>
             <ul class="menu vertical">
               <li><a href="/mycases/1">View My Casefiles</a></li>
-              <li><a href="/mycases/1">Start New Casefile</a></li>
+              <li><a data-open="exampleModal1">Start New Casefile</a></li>
               <li><a href="/mycases/1">Edit My Casefiles</a></li>
             </ul>
           </li>
@@ -53,7 +53,7 @@
       </div>
     </div>
   </div>
-  <div class="hide-for-large">
+  <div class="hide-for-medium">
     <div class="off-canvas position-left" id="offCanvasLeft" data-off-canvas>
       <ul class="vertical menu">
         <li><a href="/">Home</a></li>
@@ -76,8 +76,21 @@
         </div>
     </div>
   </div>
+
+  <div class="reveal" id="exampleModal1" data-reveal>
+    <button class="close-button" data-close aria-label="Close modal" type="button"></button>
+    <span aria-hidden="true">&times;</span>
+    <form method="post" action="/create_casefile/" id="casefile-creation">
+      {% csrf_token %}
+          DATA FOR FORM MUST GO HERE
+      <div id="save-cancel-buttons">
+      <button class="button" type="submit" value="Submit">Save</button>
+      <a class="button" href="/mycases/1">Cancel</a>
+    </form>
+  </div>
+
   {% else %}
-  <div class="show-for-large">
+  <div class="show-for-medium">
     <div class="top-bar" id="menu-panel">
       <div class="top-bar-left" id="menu-bar-left">
         <ul class="dropdown menu" data-dropdown-menu>
@@ -94,7 +107,7 @@
       </div>
     </div>
   </div>
-  <div class="hide-for-large">
+  <div class="hide-for-medium">
       <div class="off-canvas position-left" id="offCanvasLeft" data-off-canvas>
         <ul class="vertical menu">
           <li><a href="/">Home</a></li>

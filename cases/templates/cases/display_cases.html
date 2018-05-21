@@ -4,9 +4,9 @@
 
 {% if latest_cases %}
 
-<div class="show-for-large">
+<div class="show-for-medium">
 	<div class="grid-x" id="case-search-view">
-		<div class="cell small-3" id="left-casefile-panel">
+		<div class="cell small-4" id="left-casefile-panel">
 		    <div class="sticky" data-sticky data-margin-top="4" data-anchor="left-casefile-panel">		
 				{% if users_casefiles %}
 				<div id="add-to-saved">
@@ -15,22 +15,23 @@
 							{% csrf_token %}
 							{{ form }}
 						</div>
-						<label>Add the selected cases to one of your casefiles:
-							<select id="select-casefile">
+						<label>Add the selected articles to one of your casefiles:
+							<select id="select-casefile" required>
 								<option value=""></option>
 								{% for casefiles in users_casefiles %}
 								<option value="{{ casefiles.title }}">{{ casefiles.title }}</option>
 								{% endfor %}
 							</select>
 						</label>
-						<button type="submit" value="Submit" class="button" onclick="selectCases();">Add to casefile</button>
+						<div class="button-group even-3" id="casefile-actions">
+							<button type="submit" value="Submit" class="button" onclick="selectCases();">Add to casefile</button>
+							<a class="button" onclick="selectAllCases();">Select all cases</a>
+							<a class="button" onclick="deselectAllCases();">Deselect all cases</a>
+						</div>
 					</form>
 				</div>
 				{% endif %}
 			</div>
-		</div>
-		<div class="cell small-1">
-			
 		</div>
 		<div class="cell auto">
 			{% for cases in latest_cases %}
@@ -84,7 +85,7 @@
 				{% endif %}
 		</div>
 </div>
-<div class="hide-for-large">
+<div class="hide-for-medium">
 	<ul class="accordion" data-responsive-accordion-tabs="accordion">
 	{% for cases in latest_cases %}
 		<li class="accordion-item" data-accordion-item>
@@ -98,7 +99,11 @@
 	{% endfor %}
 	</ul>
 	{% if users_casefiles %}
-		<button type="button" class="button" onclick="$('input:checkbox:checked').each(function () { var checkedBox = $(this).attr('id'); $.cookie(checkedBox, 'True'); });">Add to casefile list</button>
+	<div class="button-group even-3" id="casefile-actions">
+		<button type="submit" value="Submit" class="button" onclick="selectCases();">Add to casefile</button>
+		<a class="button" onclick="selectAllCases();">Select all cases</a>
+		<a class="button" onclick="deselectAllCases();">Deselect all cases</a>
+	</div>
 	{% endif %}
 		<div class="columns">
 			<nav aria-label="Pagination">
@@ -139,6 +144,6 @@
 		</div>
 	</div>
 	{% else %}
-		<p>You currently have no casefiles.<a href="/case/create"> Make one now!</a></p>
+		<p>You currently have no casefiles.<a href="/case/create">Make one now!</a></p>
 	{% endif %}
 {% endblock %}

@@ -76,6 +76,25 @@
 	padding-right: 5%;
 }
 
+#left-casefile-panel{
+	width: 37%;
+	padding-right: 3%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#casefile-actions{
+	display: inline-block;
+	text-align: center;
+	margin: auto;
+}
+
+#casefile-creation{
+	margin: auto;
+	width: 40%;
+	padding-top: 1%;
+}
+
 .pages{
 	margin: auto;
 }
