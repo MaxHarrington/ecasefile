@@ -88,7 +88,6 @@ def my_cases(request, page_number):
 			casefile = CaseFile.objects.get(title=form.cleaned_data['title'])
 			for cases in form.cleaned_data['cases']:
 				casefile.cases.add(cases.id)
-
 			return redirect('my_cases', page_number=page_number)
 	else:
 		form = AddCasesForm()
