@@ -1,12 +1,12 @@
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, redirect
 
 from .forms import LoginForm, CreateUserForm
 
 
-# processes login requests for the editor
+# Processes login requests for the filing tool.
 def login(request):
 	if request.method == 'POST':
 		form = LoginForm(request.POST)
@@ -16,7 +16,7 @@ def login(request):
 				username=form.cleaned_data['username'],
 				password=form.cleaned_data['password']
 				)
-			if user != None:
+			if not user:
 				auth.login(request, user)
 				return redirect('/')
 			else:
@@ -28,19 +28,18 @@ def login(request):
 					})
 	else:
 		form = LoginForm()
-
 	return render(request, 'login/login.html', {'form': form})
 
 
-# attempts to logout the user
+# Attempts to logout the user.
 @login_required
 def logout_user(request):
 	auth.logout(request)
 	return render(request, 'login/logout.html')
 
 
-# creates an account for the user if one doesn't exist
-# requires a valid email address, and returns error if already exists
+# Creates an account for the user if one doesn't exist.
+# Requires a valid email address, and returns error if already exists.
 def create_account(request):
 	if request.method == 'POST':
 		form = CreateUserForm(request.POST)
@@ -52,15 +51,12 @@ def create_account(request):
 					password=form.cleaned_data['password']
 					)
 				return render(request, 'login/account_success.html')
-
 			except auth.IntegrityError:
 				form = CreateUserForm()
-				username_taken = True
-				return render(request, 'login/create_account.html', {
+			return render(request, 'login/create_account.html', {
 					'form': form, 
 					'username_taken': True
 					})
 	else:
 		form = CreateUserForm()
-
 	return render(request, 'login/create_account.html', {'form': form})
