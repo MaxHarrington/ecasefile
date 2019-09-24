@@ -3,14 +3,13 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 
-from .forms import LoginForm, CreateUserForm
+from .forms import LoginForm, CreateUserForm, ChangePasswordForm
 
 
 # Processes login requests for the filing tool.
 def login(request):
 	if request.method == 'POST':
 		form = LoginForm(request.POST)
-
 		if form.is_valid():
 			user = auth.authenticate(
 				username=form.cleaned_data['username'],
@@ -29,6 +28,20 @@ def login(request):
 	else:
 		form = LoginForm()
 	return render(request, 'login/login.html', {'form': form})
+
+
+@login_required
+def change_password(request):
+	if request.method == 'POST':
+		form = ChangePasswordForm(request.POST)
+		if form.is_valid():
+			new_password = form.cleaned_data['new_password']
+			return render(request, 'login/change_password.html')
+		else:
+			form = ChangePasswordForm(request.POST)
+	else:
+		form = ChangePasswordForm(request.POST)
+	return render(request, 'login/change_password.html', {'form':form})
 
 
 # Attempts to logout the user.
