@@ -5,6 +5,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 
 from .forms import LoginForm, CreateUserForm
 
+
 # processes login requests for the editor
 def login(request):
 	if request.method == 'POST':
@@ -30,11 +31,13 @@ def login(request):
 
 	return render(request, 'login/login.html', {'form': form})
 
+
 # attempts to logout the user
 @login_required
 def logout_user(request):
 	auth.logout(request)
 	return render(request, 'login/logout.html')
+
 
 # creates an account for the user if one doesn't exist
 # requires a valid email address, and returns error if already exists
@@ -50,7 +53,7 @@ def create_account(request):
 					)
 				return render(request, 'login/account_success.html')
 
-			except IntegrityError:
+			except auth.IntegrityError:
 				form = CreateUserForm()
 				username_taken = True
 				return render(request, 'login/create_account.html', {
