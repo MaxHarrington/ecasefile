@@ -1,5 +1,5 @@
 # ecasefile
-ecasefile is an open-source, Django-based web app where competitive, British Parliamentary-style debaters can post their 'casefiles', which are documents which can be brought into a debate, to allow the debaters to reference a set of facts and information to improve their argumentation. 
+ecasefile is an open-source, Django-based web app where competitive debaters can post their 'casefiles', which are documents which can be brought into a debate, to allow the debaters to reference a set of facts and information to improve their argumentation. 
 
 ecasefile also uses python-mammoth to process uploaded cases, along with CKEditor for basic editing function support. As well, ecasefile is initially configured to run with SQLite databses, this is mostly intended for development stages, and not production. Django handles all queries to the database, so any database which Django supports, is also supported by ecasefile.
 
